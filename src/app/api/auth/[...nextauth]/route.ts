@@ -12,3 +12,12 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
+
+export function generateStaticParams() {
+  return [
+    { nextauth: ["session"] },
+    { nextauth: ["error"] },
+    { nextauth: ["_log"] },
+    { nextauth: ["google"] },
+  ];
+}
