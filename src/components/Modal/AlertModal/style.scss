@@ -1,0 +1,22 @@
+.alert-modal-content {
+  min-width: 200px;
+  max-width: 400px;
+  p {
+    @include n-14;
+  }
+}
+
+.alert-modal-footer {
+  display: flex;
+  justify-content: center;
+  > button {
+    width: 100px;
+  }
+}
+
+@include mobile {
+  .alert-modal-content {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
