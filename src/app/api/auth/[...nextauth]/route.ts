@@ -11,18 +11,10 @@ const handler = NextAuth({
   ],
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return baseUrl;
+      console.log("redirect:", url, baseUrl)
+      return url
     },
   },
 });
 
 export { handler as GET, handler as POST };
-
-export function generateStaticParams() {
-  return [
-    { nextauth: ["session"] },
-    { nextauth: ["error"] },
-    { nextauth: ["_log"] },
-    { nextauth: ["google"] },
-  ];
-}

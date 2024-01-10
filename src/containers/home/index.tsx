@@ -10,7 +10,7 @@ export default function Home() {
     try {
       // signIn 함수를 호출하여 로그인을 시작합니다.
       await signIn("google", {
-        callbackUrl: `${window.location.href}/api/auth/callback/google`,
+        callbackUrl: `${window.location.href}test/login`,
       }); // 'google'은 사용할 인증 제공자의 이름입니다.
     } catch (error) {
       console.error("로그인 중 에러 발생:", error);
