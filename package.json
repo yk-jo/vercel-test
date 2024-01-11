@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .env/.env next dev",
-    "start": "npx serve@latest out",
+    "serve": "npx serve@latest out",
+    "start": "env-cmd -f .env/.env.release next start",
     "build:dev": "env-cmd -f .env/.env.dev next build",
     "build:release": "env-cmd -f .env/.env.release next build",
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore .",
-    "export": "next export"
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
