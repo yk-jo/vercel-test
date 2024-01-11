@@ -10,10 +10,10 @@
   // dependencies
   "axios": "^1.6.5",
   "qs": "^6.11.2",
-  "@tanstack/react-query": "^4.36.1",
   "zustand": "^4.4.7",
   "sass": "^1.69.7",
   "@svgr/webpack": "^8.1.0",
+  "universal-cookie": "^7.0.1"
 
   // dev dependencies
   "env-cmd": "^10.1.0",

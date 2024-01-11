@@ -7,6 +7,10 @@ const nextConfig = {
   sassOptions: {
     prependData: `@import 'src/assets/styles/index.scss';`,
   },
+  env: {
+    // ssr 에서도 읽을 수 있는 환경변수
+    API_BASE_URL: process.env.API_BASE_URL, 
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
