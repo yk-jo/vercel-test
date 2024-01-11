@@ -30,9 +30,9 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      return baseUrl;
-    },
+    // async redirect({ url, baseUrl }) {
+    //   return baseUrl;
+    // },
 
     async jwt({ account, user, token }) {
       if (account && user) return { ...token, user };

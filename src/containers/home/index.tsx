@@ -19,14 +19,14 @@ export default function Home() {
     }
   };
   const handleSignOut = () => signOut();
-
+  console.log("asdasdasdas;", session);
   return (
     <div>
       {session ? (
         <>
           <h1>로그인했습니다</h1>
           <div>{session.user?.email}</div>
-          <div>{session.user?.name}</div>
+          <div>{session.user?.name || session.user?.id}</div>
           <button onClick={handleSignOut}>로그아웃</button>
         </>
       ) : (
