@@ -10,6 +10,7 @@ const nextConfig = {
   env: {
     // ssr 에서도 읽을 수 있는 환경변수
     API_BASE_URL: process.env.API_BASE_URL, 
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
   },
   webpack: (config) => {
     config.module.rules.push({
