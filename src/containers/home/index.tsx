@@ -20,6 +20,7 @@ export default function Home() {
   };
   const handleSignOut = () => signOut();
   console.log("asdasdasdas;", session);
+  console.log(window.location.origin);
   return (
     <div>
       {session ? (
@@ -38,7 +39,7 @@ export default function Home() {
           <button
             onClick={() =>
               signIn("google", {
-                callbackUrl: `${process.env.NEXTAUTH_URL}/test/list`,
+                callbackUrl: `${window.location.origin}/test/list`,
               })
             }
           >
