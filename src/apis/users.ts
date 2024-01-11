@@ -2,7 +2,6 @@
 
 import { UserLoginReqType, UserLoginResType } from "@/types/user";
 import instance from "@/utils/axiosInstance";
-import { setCookie } from "@/utils/cookie";
 
 const userLogin = async (data: UserLoginReqType) => {
   try {
@@ -10,8 +9,6 @@ const userLogin = async (data: UserLoginReqType) => {
       `/api/v1/users/login`,
       data
     );
-    const { accessToken, tokenType } = res.data;
-    setCookie("nft-session", JSON.stringify({ accessToken, tokenType }));
 
     return res;
   } catch (e) {

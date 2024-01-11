@@ -7,9 +7,13 @@ export const setCookie = (
   value: any,
   options?: CookieSetOptions
 ) => {
-  return cookies.set(name, value, options);
+  return cookies.set(name, value, { ...options });
 };
 
 export const getCookie = (name: string) => {
   return cookies.get(name);
+};
+
+export const removeCookie = (name: string, options?: CookieSetOptions) => {
+  cookies.remove(name, { ...options });
 };

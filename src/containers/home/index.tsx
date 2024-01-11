@@ -1,24 +1,38 @@
 "use client";
 
+import { removeCookie, setCookie } from "@/utils/cookie";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession();
 
   const handleSignIn = async () => {
-    try {
-      // signIn 함수를 호출하여 로그인을 시작합니다.
-      const result = await signIn("email-credentials", {
-        username: "testUser",
-        password: "qwer1234!",
-        redirect: false,
-      }); // 'google'은 사용할 인증 제공자의 이름입니다.
-      console.log("로그인 결과 : ", result);
-    } catch (error) {
-      console.error("로그인 중 에러 발생:", error);
-    }
+    signIn("email-credentials", {
+      username: "testUser",
+      password: "qwer1234!",
+      redirect: false,
+    }).then((res) => {
+      console.log("로그인 결과 : ", res);
+    });
   };
-  const handleSignOut = () => signOut();
+
+  const handleSignInGoogle = () => {
+    signIn("google", {
+      callbackUrl: `${process.env.NEXTAUTH_URL}/test/list`,
+    }).then((res) => {
+      console.log(res);
+      setCookie(
+        "nft-session",
+        JSON.stringify({ accessToken: "123", tokenType: "asd" })
+      );
+    });
+  };
+
+  const handleSignOut = () =>
+    signOut().then(() => {
+      removeCookie("nft-session");
+    });
+
   console.log("asdasdasdas;", session);
   console.log(process.env.NEXTAUTH_URL);
   return (
@@ -36,15 +50,7 @@ export default function Home() {
           <p>로그인하려면 아래 버튼을 클릭하세요:</p>
           <button onClick={handleSignIn}>로그인</button>
           <br />
-          <button
-            onClick={() =>
-              signIn("google", {
-                callbackUrl: `${process.env.NEXTAUTH_URL}/test/list`,
-              })
-            }
-          >
-            구글 로그인
-          </button>
+          <button onClick={handleSignInGoogle}>구글 로그인</button>
         </>
       )}
     </div>

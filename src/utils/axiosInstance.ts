@@ -18,12 +18,16 @@ const instance: AxiosInstance = axios.create({
 
 /**
  * 서버 컴포넌트에서 localStorage 값을 가져올 수 없어서 토큰은 쿠키에 넣어서 관리.
+ * 서버에서 쿠키값 변경 시 next/headers->cookies()
+ * 클라이언트에서 쿠키값 변경 시 cookie.ts
  */
-const getSession = () => {
+const _getSession = () => {
   if (typeof window !== "undefined") {
     return getCookie("nft-session");
   } else {
-    const data = require("next/headers")?.cookies?.().get("nft-session")?.value;
+    const cookies = require("next/headers")?.cookies?.();
+    console.log("cookies:", cookies);
+    const data = cookies.get("nft-session")?.value;
     console.log("session:", data);
     return data ? JSON.parse(data) : null;
   }
@@ -31,7 +35,7 @@ const getSession = () => {
 
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const session = getSession();
+    const session = _getSession();
 
     if (session) {
       const { accessToken, tokenType } = session;
